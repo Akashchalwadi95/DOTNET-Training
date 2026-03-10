@@ -1,0 +1,48 @@
+# Ignore build outputs for all projects
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore VS Code and Visual Studio folders
+.vscode/
+.vs/
+**/.vscode/
+**/.vs/
+
+# Ignore node_modules and package lock files in client
+pulsedummy.client/.vscode/
+pulsedummy.client/node_modules/
+pulsedummy.client/package-lock.json
+pulsedummy.client/yarn.lock
+pulsedummy.client/obj/
+pulsedummy.client/CHANGELOG.md
+pulsedummy.client/eslin.config.js
+
+# Ignore log files
+*.log
+
+# Ignore environment files
+*.env
+
+# Ignore coverage reports
+coverage/
+PulseDummy.sln
+.packages/
+
+# Ignore server-specific files
+PulseDummy.Server/PulseDummy.Server.csproj.user
+PulseDummy.Server/*.http
+
+# Ignore build artifacts in subfolders
+PulseDummy.Server/bin/
+PulseDummy.Server/obj/
+pulsedummy.client/obj/
+pulsedummy.client/bin/
+pulsedummy.Server/CHANGELOG.md
