@@ -33,8 +33,7 @@ pulsedummy.client/eslin.config.js
 
 # Ignore coverage reports
 coverage/
-PulseDummy.sln
-.packages/
+packages/
 
 # Ignore server-specific files
 PulseDummy.Server/PulseDummy.Server.csproj.user
