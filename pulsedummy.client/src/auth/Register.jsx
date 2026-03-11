@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { FaLock, FaEnvelope, FaEye, FaEyeSlash, FaExclamationCircle, FaUser, FaPhone, FaBirthdayCake  } from "react-icons/fa";
+import { FaLock, FaEnvelope, FaEye, FaEyeSlash, FaExclamationCircle, FaUser, FaPhone, FaBirthdayCake, FaSitemap  } from "react-icons/fa";
 import { toast } from "react-toastify";
+import Select from "react-select";
 import { validateEmail, validatePassword} from "../../utils/validations";
 import { textType } from "../../utils/sanitize";
 import "./commonStyles.css";
@@ -11,8 +12,8 @@ export default function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState(null);
-    const [age, setAge] = useState(null);
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [age, setAge] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [emailError, setEmailError] = useState('');
@@ -22,6 +23,8 @@ export default function Register() {
     const [lastNameError, setLastNameError] = useState('');
     const [phoneNumberError, setPhoneNumberError] = useState('');
     const [ageError, setAgeError] = useState('');
+    const [department, setDepartment] = useState(null);
+    const [departmentError, setDepartmentError] = useState(null);
     
     const resetForm = () => {
         setEmail('');
@@ -31,6 +34,7 @@ export default function Register() {
         setLastName('');
         setPhoneNumber('');
         setAge('');
+        setDepartment(null);
         setEmailError('');
         setPasswordError('');
         setConfirmPasswordError('');
@@ -38,6 +42,7 @@ export default function Register() {
         setLastNameError('');
         setPhoneNumberError('');
         setAgeError('');
+        setDepartmentError('');
         setShowPassword(false);
         setShowConfirmPassword(false);
     }
@@ -113,6 +118,11 @@ export default function Register() {
             hasError = true;
         }
 
+        if(!department){
+            setDepartmentError("Department is Required");
+            hasError = true;
+        }
+
         if(hasError) return;
 
         const payload = {
@@ -121,7 +131,8 @@ export default function Register() {
             "FirstName": firstName,
             "LastName": lastName,
             "PhoneNumber": phoneNumber,
-            "Age": age
+            "Age": age,
+            "DepartmentId": department
         }
 
         try{
@@ -170,6 +181,12 @@ const handlePasswordChange = (e) => {
     setPassword(value);
     if (passwordError) setPasswordError('');
 };
+
+const options = [
+  { value: '1', label: 'Software Development' },
+  { value: '2', label: 'Quality Assurance' },
+  { value: '3', label: 'Information Security' }
+]
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center bg-[url('/falling_drops.jpg')] bg-cover bg-center pt-3 pb-14">
@@ -285,6 +302,23 @@ const handlePasswordChange = (e) => {
                         </div>
 
                         {ageError && <p className="text-red-500 text-sm">{ageError}</p>}
+                    </label>
+
+                    <label className="mt-3 block">
+                        <span className="font-bold">Department</span> <a className="text-red-500">*</a>
+                        <div className={`flex p-3  items-center gap-3 bg-[#dae8ed] border-b-2 border-gray-300`}>
+
+                        <FaSitemap />    
+                        <Select options={options} 
+                        placeholder="Select Department" 
+                        value={options.find(option => option.value === department) || null}
+                        onChange={(e)=> {setDepartment(e.value); if(departmentError) setDepartmentError('');}}
+                        className="flex-1"
+                        />
+                        {departmentError && <FaExclamationCircle color="red" />}
+                        </div>
+
+                        {departmentError && <p className="text-red-500 text-sm">{departmentError}</p>}
                     </label>
 
                     <label className="mt-3 block">

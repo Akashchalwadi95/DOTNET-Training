@@ -63,7 +63,10 @@ export default function Login() {
             toast.success("Logged in Successfully")
         }
         else if(responseText === "Invalid Email or Password"){
-            toast.error("Login Failed")
+            toast.error("Invalid Email or Password")
+        }
+        else if(responseText === "Invalid Password"){
+            toast.error("Invalid Password")
         }
         else{
             toast.error("Something went wrong: ", responseText)

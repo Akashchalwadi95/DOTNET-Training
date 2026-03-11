@@ -60,6 +60,7 @@ namespace PulseDummy.Server.Services
                 LastName = model.LastName,
                 PhoneNumber = model.PhoneNumber,
                 Age = model.Age,
+                DepartmentId = model.DepartmentId
             };
 
             try
@@ -77,13 +78,6 @@ namespace PulseDummy.Server.Services
 
         public async Task<(bool Success, string Message)> LoginAsync(LoginDto model)
         {
-            // Map Webmodel to Entity
-            //var entity = new PulseDummy.Server.Models.PulseDummyTable
-            //{
-            //    Email = model.Email,
-            //    Password = model.Password
-            //};
-
             var user = _context.PulseDummyTables.FirstOrDefault(x => x.Email == model.Email);
             if (user == null)
                 return (false, "Invalid Email or Password");

@@ -11,6 +11,7 @@
 
         public string PhoneNumber { get; set; } = null!;
         public int Age { get; set; }
+        public int DepartmentId { get; set; }
 
     }
 }
