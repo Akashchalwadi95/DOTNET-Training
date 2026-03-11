@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+.my-header-class {
+  background-color: #a733c8; /* Tailwind's red-400 */
+  color: white;
+}
+
+/* Or target the grid root directly */
+.ag-theme-quartz .ag-root-wrapper {
+  border-radius: 0;
+}
+
+.ag-root-wrapper, .ag-root {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}

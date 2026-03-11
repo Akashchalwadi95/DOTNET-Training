@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { FaLock, FaEnvelope, FaEye, FaEyeSlash, FaExclamationCircle  } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { validateEmail, validatePassword} from "../../utils/validations";
 import "./commonStyles.css";
 import { toast } from "react-toastify";
 
 export default function Login() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -61,6 +63,7 @@ export default function Login() {
         console.log("The response text is", responseText);
         if(responseText === "Login Success"){
             toast.success("Logged in Successfully")
+            navigate('/home');
         }
         else if(responseText === "Invalid Email or Password"){
             toast.error("Invalid Email or Password")
@@ -75,6 +78,7 @@ export default function Login() {
        
         }
         catch(error){
+            console.log("The error is", error);
             toast.error("Something went wrong!")    
         }
 
