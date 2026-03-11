@@ -38,6 +38,8 @@ export default function Register() {
         setLastNameError('');
         setPhoneNumberError('');
         setAgeError('');
+        setShowPassword(false);
+        setShowConfirmPassword(false);
     }
 
     const handleRegister = async (e) => {
@@ -65,7 +67,7 @@ export default function Register() {
             hasError = true;
         }
         else if(!(validatePassword(password))){
-            setPasswordError("Password should contain atleast 1 capital, small alphabet, atleast 1 special character, and atleast 1 number!");
+            setPasswordError("Password must include uppercase, lowercase, a number, and a special character.");
             hasError = true;
         }
 
@@ -174,7 +176,7 @@ const handlePasswordChange = (e) => {
             {/* <img src={waterImg} alt="Image" /> */}
             <div className="bg-white px-8 py-4 rounded-lg shadow-lg w-full max-w-md">
                 <h1 className="text-3xl font-bold text-black mb-5 flex justify-center">Register</h1>
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleRegister} autoComplete="new-password">
                     <label className="mt-1 block">
                         <span className="font-bold">First Name</span> <a className="text-red-500">*</a>
                         <div className={`flex p-3  items-center gap-3 bg-[#dae8ed] border-b-2 border-gray-300`}>
@@ -182,7 +184,9 @@ const handlePasswordChange = (e) => {
                         <FaUser />    
                         <input 
                         placeholder="First Name" 
-                        className="text-black focus: outline-none flex-1"
+                        autoComplete="new-password"
+                        name={`firstName-${Math.random()}`}
+                        className="text-black focus:outline-none flex-1"
                         value={textType(firstName)}
                         onChange={(e)=> {setFirstName(e.target.value.replace(/\s+/g, '')); if(firstNameError) setFirstNameError('')}}
                         />
@@ -199,7 +203,9 @@ const handlePasswordChange = (e) => {
                         <FaUser />    
                         <input 
                         placeholder="Last Name" 
-                        className="text-black focus: outline-none flex-1"
+                        autoComplete="new-password"
+                        name={`lastName-${Math.random()}`}
+                        className="text-black focus:outline-none flex-1"
                         value={textType(lastName)}
                         onChange={(e)=> {setLastName(e.target.value.replace(/\s+/g, '')); if(lastNameError) setLastNameError('')}}
                         />
@@ -219,7 +225,9 @@ const handlePasswordChange = (e) => {
                         <FaEnvelope />    
                         <input 
                         placeholder="Email Address" 
-                        className="text-black focus: outline-none flex-1"
+                        autoComplete="new-password"
+                        name={`email-${Math.random()}`}
+                        className="text-black focus:outline-none flex-1"
                         value={email}
                         onChange={handleEmailChange}
                         />
@@ -237,11 +245,15 @@ const handlePasswordChange = (e) => {
                         <FaPhone />    
                         <input 
                         placeholder="Phone Number" 
-                        type="Number"
+                        autoComplete="new-password"
+                        name={`phoneNumber-${Math.random()}`}
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         maxLength={10}
-                        className="text-black focus: outline-none flex-1"
+                        className="text-black focus:outline-none flex-1"
                         value={phoneNumber}
-                        onChange={(e)=> {setPhoneNumber(e.target.value.replace(/\s+/g, '')); if(phoneNumberError) setPhoneNumberError('')}}
+                        onChange={(e)=> {setPhoneNumber(e.target.value.replace(/\D/g, '')); if(phoneNumberError) setPhoneNumberError('')}}
                         />
                         {phoneNumberError && <FaExclamationCircle color="red" />}
                         </div>
@@ -256,11 +268,18 @@ const handlePasswordChange = (e) => {
                         <FaBirthdayCake />    
                         <input 
                         placeholder="Age" 
-                        type="number"
+                        autoComplete="new-password"
+                        name={`age-${Math.random()}`}
+                        type="text"
                         maxLength={3}
-                        className="text-black focus: outline-none flex-1"
+                        className="text-black focus:outline-none flex-1"
                         value={age}
-                        onChange={(e)=> {setAge(e.target.value.replace(/\s+/g, '')); if(ageError) setAgeError('')}}
+                        onChange={(e)=> {
+                            let value = e.target.value.replace(/\D/g, ''); 
+                            if(Number(value)<=100){
+                                setAge(value);
+                            }
+                            if(ageError) setAgeError('')}}
                         />
                         {ageError && <FaExclamationCircle color="red" />}
                         </div>
@@ -277,7 +296,7 @@ const handlePasswordChange = (e) => {
                         <input 
                         placeholder="Password" 
                         type= {showPassword ? "text" : "password"}
-                        className="text-black focus: outline-none flex-1"
+                        className="text-black focus:outline-none flex-1"
                         value={password}
                         onChange={handlePasswordChange}
                         />
@@ -301,7 +320,7 @@ const handlePasswordChange = (e) => {
                         <input 
                         placeholder="Confirm Password" 
                         type= {showConfirmPassword ? "text" : "password"}
-                        className="text-black focus: outline-none flex-1" 
+                        className="text-black focus:outline-none flex-1" 
                         value={confirmPassword}
                         onChange={(e)=> {setConfirmPassword(e.target.value.replace('/\s+/g', '')); if(confirmPasswordError) setConfirmPasswordError('')}}
                         />

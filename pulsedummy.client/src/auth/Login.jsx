@@ -33,7 +33,7 @@ export default function Login() {
             hasError = true;
         }
         else if(!(validatePassword(password))){
-            setPasswordError("Password should contain atleast 1 capital, small alphabet, atleast 1 special character, and atleast 1 number!");
+            setPasswordError("Password must include uppercase, lowercase, a number, and a special character.");
             hasError = true;
         }
 
@@ -102,7 +102,7 @@ const handlePasswordChange = (e) => {
                         <FaEnvelope />    
                         <input 
                         placeholder="User Name" 
-                        className="text-black focus: outline-none flex-1"
+                        className="text-black focus:outline-none flex-1"
                         value={email}
                         onChange={handleEmailChange}
                         />
@@ -121,7 +121,7 @@ const handlePasswordChange = (e) => {
                         <input 
                         placeholder="Password" 
                         type= {showPassword ? "text" : "password"}
-                        className="text-black focus: outline-none flex-1"
+                        className="text-black focus:outline-none flex-1"
                         value={password}
                         onChange={handlePasswordChange}
                         />
