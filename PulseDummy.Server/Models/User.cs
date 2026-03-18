@@ -43,11 +43,11 @@ public partial class User
 
     public virtual User? CreatedByNavigation { get; set; }
 
-    public virtual ICollection<Department> DepartmentCreatedByNavigations { get; set; } = new List<Department>();
+    public virtual ICollection<Department1> Department1CreatedByNavigations { get; set; } = new List<Department1>();
 
-    public virtual ICollection<Department> DepartmentEditedByNavigations { get; set; } = new List<Department>();
+    public virtual ICollection<Department1> Department1EditedByNavigations { get; set; } = new List<Department1>();
 
-    public virtual Department Departments { get; set; } = null!;
+    public virtual Department1 Departments { get; set; } = null!;
 
     public virtual User? EditedByNavigation { get; set; }
 

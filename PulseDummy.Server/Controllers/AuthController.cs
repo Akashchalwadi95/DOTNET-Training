@@ -16,7 +16,7 @@ namespace PulseDummy.Server.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] PulseDummyTableDto model)
+        public async Task<IActionResult> Register([FromBody] UserDetailDto model)
         {
            var (success, message) = await _authServices.RegisterAsync(model);
             if(!success)

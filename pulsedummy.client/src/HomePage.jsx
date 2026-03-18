@@ -59,6 +59,22 @@ export default function HomePage(){
 }
   ];
 
+  useEffect(()=>{
+    const getUsers = async ()=>{
+    const response = await fetch("https://localhost:7251/api/user/getUserData", {
+        method: "GET",
+        headers: {
+                    "Content-Type": "application/json"
+            },
+    });
+
+    console.log("response is ", response)
+    console.log("response text is", await response.text())
+};
+ 
+getUsers();
+  },[])
+
     return (
         <div className="w-full p-8">
             {/* Top row: Search, Department, Sync */}

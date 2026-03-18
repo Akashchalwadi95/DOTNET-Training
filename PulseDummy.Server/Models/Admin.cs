@@ -23,5 +23,7 @@ public partial class Admin
 
     public DateTime? CreatedAt { get; set; }
 
+    public string? ProfileImage { get; set; }
+
     public virtual AdminAddress Address { get; set; } = null!;
 }

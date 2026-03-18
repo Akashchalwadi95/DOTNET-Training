@@ -6,7 +6,7 @@ namespace PulseDummy.Server.Interfaces
 {
     public interface IAuthServices
     {
-        Task<(bool Success, string Message)> RegisterAsync(PulseDummyTableDto model);
+        Task<(bool Success, string Message)> RegisterAsync(UserDetailDto model);
 
         Task<(bool Success, string Message)> LoginAsync(LoginDto model);
     }

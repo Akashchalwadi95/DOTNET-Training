@@ -14,6 +14,7 @@ builder.Services.AddDbContext<TrainingEdotContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IAuthServices, AuthServices>();
+builder.Services.AddScoped<IUserServices, UserServices>();
 
 builder.Services.AddCors(options =>
 {

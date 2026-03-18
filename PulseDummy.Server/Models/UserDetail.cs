@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PulseDummy.Server.Models;
 
-public partial class PulseDummyTable
+public partial class UserDetail
 {
     public int UserDetailsId { get; set; }
 

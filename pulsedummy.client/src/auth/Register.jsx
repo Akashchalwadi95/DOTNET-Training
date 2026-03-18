@@ -193,7 +193,7 @@ const options = [
             {/* <img src={waterImg} alt="Image" /> */}
             <div className="bg-white px-8 py-4 rounded-lg shadow-lg w-full max-w-md">
                 <h1 className="text-3xl font-bold text-black mb-5 flex justify-center">Register</h1>
-                <form onSubmit={handleRegister} autoComplete="new-password">
+                <form onSubmit={handleRegister} autoComplete="one-time-code">
                     <label className="mt-1 block">
                         <span className="font-bold">First Name</span> <a className="text-red-500">*</a>
                         <div className={`flex p-3  items-center gap-3 bg-[#dae8ed] border-b-2 border-gray-300`}>
@@ -201,7 +201,7 @@ const options = [
                         <FaUser />    
                         <input 
                         placeholder="First Name" 
-                        autoComplete="new-password"
+                        autoComplete="one-time-code"
                         name={`firstName-${Math.random()}`}
                         className="text-black focus:outline-none flex-1"
                         value={textType(firstName)}
@@ -220,7 +220,7 @@ const options = [
                         <FaUser />    
                         <input 
                         placeholder="Last Name" 
-                        autoComplete="new-password"
+                        autoComplete="one-time-code"
                         name={`lastName-${Math.random()}`}
                         className="text-black focus:outline-none flex-1"
                         value={textType(lastName)}
@@ -232,9 +232,6 @@ const options = [
                         {lastNameError && <p className="text-red-500 text-sm">{lastNameError}</p>}
                     </label>
 
-                    
-
-
                     <label className="mt-3 block">
                         <span className="font-bold">Email</span> <a className="text-red-500">*</a>
                         <div className={`flex p-3  items-center gap-3 bg-[#dae8ed] border-b-2 border-gray-300`}>
@@ -242,7 +239,7 @@ const options = [
                         <FaEnvelope />    
                         <input 
                         placeholder="Email Address" 
-                        autoComplete="new-password"
+                        autoComplete="one-time-code"
                         name={`email-${Math.random()}`}
                         className="text-black focus:outline-none flex-1"
                         value={email}
@@ -262,7 +259,7 @@ const options = [
                         <FaPhone />    
                         <input 
                         placeholder="Phone Number" 
-                        autoComplete="new-password"
+                        autoComplete="one-time-code"
                         name={`phoneNumber-${Math.random()}`}
                         type="text"
                         inputMode="numeric"
@@ -285,7 +282,7 @@ const options = [
                         <FaBirthdayCake />    
                         <input 
                         placeholder="Age" 
-                        autoComplete="new-password"
+                        autoComplete="one-time-code"
                         name={`age-${Math.random()}`}
                         type="text"
                         maxLength={3}

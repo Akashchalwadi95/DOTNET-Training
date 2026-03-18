@@ -13,9 +13,9 @@ namespace PulseDummy.Server.Services
             _context = context;
         }
 
-        public async Task<(bool Success, string Message)> RegisterAsync(PulseDummyTableDto model)
+        public async Task<(bool Success, string Message)> RegisterAsync(UserDetailDto model)
         {
-            if (_context.PulseDummyTables.Any(x => x.Email == model.Email))
+            if (_context.UserDetails.Any(x => x.Email == model.Email))
             {
                 return (false, "Email already exists");
             }
@@ -51,7 +51,7 @@ namespace PulseDummy.Server.Services
             }
 
             // Map Webmodel to Entity
-            var entity = new PulseDummy.Server.Models.PulseDummyTable
+            var entity = new PulseDummy.Server.Models.UserDetail
             {
                 Email = model.Email,
                 Password = model.Password,
@@ -60,12 +60,12 @@ namespace PulseDummy.Server.Services
                 LastName = model.LastName,
                 PhoneNumber = model.PhoneNumber,
                 Age = model.Age,
-                DepartmentId = model.DepartmentId
+                CompanyDepartmentId = model.DepartmentId
             };
 
             try
             {
-                _context.PulseDummyTables.Add(entity);
+                _context.UserDetails.Add(entity);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -78,7 +78,7 @@ namespace PulseDummy.Server.Services
 
         public async Task<(bool Success, string Message)> LoginAsync(LoginDto model)
         {
-            var user = _context.PulseDummyTables.FirstOrDefault(x => x.Email == model.Email);
+            var user = _context.UserDetails.FirstOrDefault(x => x.Email == model.Email);
             if (user == null)
                 return (false, "Invalid Email or Password");
 
